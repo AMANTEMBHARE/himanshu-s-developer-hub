@@ -4,6 +4,8 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from "emailjs-com";
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,14 +15,41 @@ const Contact = () => {
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    setFormData({ name: "", email: "", message: "" });
-  };
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  emailjs
+    .send(
+      "service_7envuyw",
+      "template_m3s7a1i",
+      {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      },
+      "wi0tI8J4oboq4FRwR"
+    )
+    .then(
+      () => {
+        toast({
+          title: "Message sent!",
+          description: "Your message has been delivered successfully.",
+        });
+
+        setFormData({ name: "", email: "", message: "" });
+      },
+      (error) => {
+        toast({
+          title: "Failed!",
+          description: "Something went wrong. Try again later.",
+          variant: "destructive",
+        });
+
+        console.error(error);
+      }
+    );
+};
+
 
   const contactLinks = [
     {
@@ -33,13 +62,13 @@ const Contact = () => {
       icon: Linkedin,
       label: "LinkedIn",
       value: "Connect on LinkedIn",
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/in/himanshuraghorte/",
     },
     {
       icon: Github,
       label: "GitHub",
       value: "View my repositories",
-      href: "https://github.com",
+      href: "https://github.com/himanshuraghorteatwork",
     },
     {
       icon: MapPin,
@@ -102,7 +131,7 @@ const Contact = () => {
                     id="name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Your name"
+                    placeholder="Your Name"
                     required
                     className="bg-secondary/50 border-border focus:border-primary"
                   />
@@ -116,7 +145,7 @@ const Contact = () => {
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="your.email@example.com"
+                    placeholder="email@example.com"
                     required
                     className="bg-secondary/50 border-border focus:border-primary"
                   />

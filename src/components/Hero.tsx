@@ -41,19 +41,23 @@ const Hero = () => {
 
           <div className="flex flex-wrap items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
             <Button
-              size="lg"
-              className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 glow-effect"
-            >
-              <Download className="h-4 w-4" />
-              Download Resume
-            </Button>
+  asChild
+  size="lg"
+  className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 glow-effect"
+>
+  <a href="/resume.pdf" download="Himanshu_Resume.pdf">
+    <Download className="h-4 w-4" />
+    Download Resume
+  </a>
+</Button>
+
             <Button
               variant="outline"
               size="lg"
               className="gap-2 border-border hover:bg-secondary hover:border-primary/50"
               asChild
             >
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/himanshuraghorteatwork" target="_blank" rel="noopener noreferrer">
                 <Github className="h-4 w-4" />
                 GitHub
               </a>
@@ -64,7 +68,7 @@ const Hero = () => {
               className="gap-2 border-border hover:bg-secondary hover:border-primary/50"
               asChild
             >
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/himanshuraghorte/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="h-4 w-4" />
                 LinkedIn
               </a>
@@ -75,7 +79,7 @@ const Hero = () => {
               className="gap-2 border-border hover:bg-secondary hover:border-primary/50"
               asChild
             >
-              <a href="https://leetcode.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://leetcode.com/u/himanshuraghorte/" target="_blank" rel="noopener noreferrer">
                 <Code2 className="h-4 w-4" />
                 LeetCode
               </a>
