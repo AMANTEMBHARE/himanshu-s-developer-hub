@@ -20,14 +20,15 @@ const handleSubmit = (e: React.FormEvent) => {
 
   emailjs
     .send(
-      "service_7envuyw",
-      "template_m3s7a1i",
+      import.meta.env.VITE_EMAIL_SERVICE,
+      import.meta.env.VITE_EMAIL_TEMPLATE,
       {
         name: formData.name,
         email: formData.email,
         message: formData.message,
       },
-      "wi0tI8J4oboq4FRwR"
+      import.meta.env.VITE_EMAIL_PUBLIC
+      
     )
     .then(
       () => {
